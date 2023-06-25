@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
     "debug_toolbar",
     "drf_spectacular",
     "rest_framework",
@@ -166,10 +167,10 @@ AUTH_USER_MODEL = "accounts.CustomUser"
 SITE_ID = 1
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "home"
+# LOGIN_REDIRECT_URL = "home"
 
 # https://django-allauth.readthedocs.io/en/latest/views.html#logout-account-logout
-ACCOUNT_LOGOUT_REDIRECT_URL = "home"
+# ACCOUNT_LOGOUT_REDIRECT_URL = "home"
 
 # https://django-allauth.readthedocs.io/en/latest/installation.html?highlight=backends
 AUTHENTICATION_BACKENDS = (
@@ -198,7 +199,17 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "EduConnect API",
-    "DESCRIPTION": "API for EduConnect",
+    "DESCRIPTION": "EduConnect is an innovative online platform that aims to revolutionize the way students and educators interact and collaborate in the field of education. The API is secured using Token Authentication.",
+    "TOS": None,
+    "CONTACT": {"url": "https://www.educonnect.co.za/contact-us/"},
+    "LICENSE": {"name": "MIT", "url": "https://choosealicense.com/licenses/mit/"},
     "VERSION": "0.0.1",
-    # OTHER SETTINGS
+    "SCHEMA_PATH_PREFIX": r"/api/v1",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
 }
+
+
+# Media files
+MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_URL = "/media/"
