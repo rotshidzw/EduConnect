@@ -199,7 +199,12 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "EduConnect API",
-    "DESCRIPTION": "API for EduConnect",
+    "DESCRIPTION": "EduConnect is an innovative online platform that aims to revolutionize the way students and educators interact and collaborate in the field of education. The API is secured using Token Authentication.",
+    "TOS": None,
+    "CONTACT": {"url": "https://www.educonnect.co.za/contact-us/"},
+    "LICENSE": {"name": "MIT", "url": "https://choosealicense.com/licenses/mit/"},
     "VERSION": "0.0.1",
-    # OTHER SETTINGS
+    "SCHEMA_PATH_PREFIX": r"/api/v1",
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,
 }
