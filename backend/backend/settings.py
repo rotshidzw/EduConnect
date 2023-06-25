@@ -28,6 +28,9 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "drf_spectacular",
     "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
     # Local
     "accounts",
 ]

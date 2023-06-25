@@ -6,6 +6,7 @@ charset-normalizer==3.0.1
 crispy-bootstrap5==0.7
 cryptography==39.0.1
 defusedxml==0.7.1
+dj-rest-auth==4.0.1
 Django==4.2
 django-allauth==0.52.0
 django-crispy-forms==2.0

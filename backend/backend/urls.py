@@ -6,8 +6,11 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-    path("api/docs/", SpectacularRedocView.as_view(url_name="schema"), name="docs"),
+    path("api/v1/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path("api/v1/docs/", SpectacularRedocView.as_view(url_name="schema"), name="docs"),
+    path("api-auth/", include("rest_framework.urls")),
+    path("api/v1/auth/", include("dj_rest_auth.urls")),
+    path("api/v1/auth/registration/", include("dj_rest_auth.registration.urls")),
 ]
 
 if settings.DEBUG:
