@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "debug_toolbar",
+    "drf_spectacular",
+    "rest_framework",
     # Local
     "accounts",
 ]
@@ -168,3 +170,22 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "EduConnect API",
+    "DESCRIPTION": "API for EduConnect",
+    "VERSION": "0.0.1",
+    # OTHER SETTINGS
+}
