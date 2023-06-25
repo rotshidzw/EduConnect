@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "allauth",
     "allauth.account",
+    "allauth.socialaccount",
     "debug_toolbar",
     "drf_spectacular",
     "rest_framework",
