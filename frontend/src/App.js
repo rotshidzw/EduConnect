@@ -1,10 +1,11 @@
-
+import Layout from './components/Layout';
+import Registration from './components/RegistrationForm'
 function App() {
   return (
     <>
-     <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+     <Registration />
+     <Layout />
+
     </>
   );
 }
