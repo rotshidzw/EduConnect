@@ -1,50 +1,38 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes, useNavigate } from 'react-router-dom';
-
-const FormField = ({ label, type, value, onChange }) => {
-  return (
-    <div className="mb-4">
-      <label htmlFor={label} className="block font-bold mb-1">{label}:</label>
-      <input
-        type={type}
-        id={label}
-        value={value}
-        onChange={onChange}
-        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-      />
-    </div>
-  );
-};
+import { Link, useNavigate } from 'react-router-dom';
+import Layout from './Layout';
+import FormField from './FormField';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [schoolName, setSchoolName] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zipCode, setZipCode] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [website, setWebsite] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
     // Form validation
-    if (!username || !email || !password || !confirmPassword) {
-      setErrorMessage('Please fill in all fields');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setErrorMessage('Passwords do not match');
+    if (!schoolName || !address || !city || !state || !zipCode || !phoneNumber) {
+      setErrorMessage('Please fill in all required fields');
       return;
     }
 
     // Create payload
     const payload = {
-      username,
-      email,
-      password1: password,
-      password2: confirmPassword,
+      schoolName,
+      address,
+      city,
+      state,
+      zipCode,
+      phoneNumber,
+      website,
     };
 
     // Send API request
@@ -58,17 +46,18 @@ const RegistrationForm = () => {
       .then((response) => {
         if (response.ok) {
           // Registration successful
-
           setErrorMessage('');
-          setUsername('');
-          setEmail('');
-          setPassword('');
-          setConfirmPassword('');
+          setSchoolName('');
+          setAddress('');
+          setCity('');
+          setState('');
+          setZipCode('');
+          setPhoneNumber('');
+          setWebsite('');
           navigate('/success'); // Navigate to success page
         } else {
           // Registration failed
           setErrorMessage('Registration failed. Please try again.');
-          console.log(payload)
         }
       })
       .catch(() => {
@@ -78,62 +67,59 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Registration Form</h2>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
-      <form onSubmit={handleFormSubmit} className="mb-4">
-        <FormField
-          label="Username"
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <FormField
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <FormField
-          label="Password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <FormField
-          label="Confirm Password"
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Register</button>
-      </form>
-      <p>Already have an account? <Link to="/login" className="text-blue-500">Login</Link></p>
-    </div>
-  );
-};
-
-const SuccessPage = () => {
-  return (
-    <div className="container mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Registration Successful!</h2>
-      <p>Your account has been created successfully.</p>
-      <p>You can now <Link to="/login" className="text-blue-500">login</Link> to access your account.</p>
-    </div>
-  );
-};
-
-const App = () => {
-  return (
-    <Router>
-      <div>
-        <Routes>
-          <Route path="/" element={<RegistrationForm />} />
-          <Route path="/success" element={<SuccessPage />} />
-        </Routes>
+    <Layout>
+      <div className="container  mx-auto">
+        <h2 className="text-2xl font-bold mb-4">School Registration Form</h2>
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+        <form onSubmit={handleFormSubmit} className="mb-4">
+          <FormField
+            label="School Name"
+            type="text"
+            value={schoolName}
+            onChange={(e) => setSchoolName(e.target.value)}
+          />
+          <FormField
+            label="Address"
+            type="text"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <FormField
+            label="City"
+            type="text"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <FormField
+            label="State"
+            type="text"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+          />
+          <FormField
+            label="Zip Code"
+            type="text"
+            value={zipCode}
+            onChange={(e) => setZipCode(e.target.value)}
+          />
+          <FormField
+            label="Phone Number"
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <FormField
+            label="Website"
+            type="text"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+          <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Register</button>
+        </form>
+        <p>Already have an account? <Link to="/login" className="text-blue-500">Login</Link></p>
       </div>
-    </Router>
+    </Layout>
   );
 };
 
-export default App;
+export default RegistrationForm;
